@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import * as L from 'leaflet';
 import { capability } from 'src/app/interfaces/capability';
+import 'leaflet-draw';
 
 @Component({
   selector: 'app-map',
@@ -22,8 +23,15 @@ export class MapComponent implements OnChanges, OnInit {
   ngOnInit(): void {
     this.map = L.map('map', {
       center: [50.6311634, 3.0599573],
-      zoom: 6,
+      zoom: 8,
     });
+    var featureGroup = L.featureGroup().addTo(this.map);
+    let drwControlToAdd = new L.Control.Draw({
+      edit: {
+        featureGroup: featureGroup,
+      },
+    });
+    drwControlToAdd.addTo(this.map);
   }
   ngOnChanges(): void {
     if (this.capability != null) {
@@ -46,5 +54,7 @@ export class MapComponent implements OnChanges, OnInit {
         })
         .addTo(this.map);
     }
+
+
   }
 }
