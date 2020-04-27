@@ -1,0 +1,30 @@
+Header
+<div id="header">
+  <div class="top">
+    <!-- Logo -->
+    <div id="logo">
+      <span class="image avatar48"><img src="assets/images/avatar.jpg" alt="" /></span>
+      <p>European Environment Agency</p>
+    </div>
+
+    <!-- Nav -->
+    <nav id="nav">
+      <ul>
+        <li *ngFor="let layer of capability?.layers">
+          <span class="icons-container" (click)="selectLayer(layer.name)">
+            <img *ngIf="layer.selected" src="assets/images/eye.png" />
+            <div class="tooltip" *ngIf="layer.abstract">
+              <img class="size_of_img" src="assets/images/info.png" alt="Image 1" /><span
+                class="tooltiptext">{{ layer.abstract }}</span>
+            </div>
+          </span>
+          <span><a [class]="layer.selected?'active':''" (click)="selectLayer(layer.name)" id="top-link">
+              {{ layer.name }}
+            </a></span>
+          <span class="legend-container"><img class="legend-img" [style.width.px]="layer.width"
+              [style.height.px]="layer.height" *ngIf="layer.selected" src="{{ layer.legende.url }}" /></span>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

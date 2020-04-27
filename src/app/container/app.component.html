@@ -1,0 +1,8 @@
+<app-geo-layers
+  [capability]="capability$ | async"
+  (selectedLayers)="updateSelectedLayers($event)"
+></app-geo-layers>
+<app-map
+  [capability]="capability$ | async"
+  [selectedLayers]="selectedLayersUpdated"
+></app-map>
